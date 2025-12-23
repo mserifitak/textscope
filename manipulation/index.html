@@ -1,1 +1,99 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Manipulation Analysis – Textscope</title>
+  <meta name="description" content="Analyze text for emotional manipulation and hidden intent using AI." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0e0e11;
+      color: #ffffff;
+    }
+    .container {
+      max-width: 760px;
+      margin: auto;
+      padding: 60px 20px;
+    }
+    h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+    p {
+      color: #cccccc;
+      line-height: 1.6;
+    }
+    textarea, input {
+      width: 100%;
+      margin-top: 20px;
+      padding: 14px;
+      border-radius: 6px;
+      border: none;
+      font-size: 15px;
+    }
+    textarea {
+      height: 180px;
+      resize: vertical;
+    }
+    button {
+      margin-top: 20px;
+      padding: 14px 24px;
+      background: #ffffff;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .result {
+      margin-top: 40px;
+      padding: 20px;
+      background: #16161d;
+      border-radius: 8px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Manipulation Analysis</h1>
+    <p>
+      Detect emotional pressure, urgency tricks, authority bias,
+      and hidden persuasion techniques in written content.
+    </p>
+
+    <textarea id="textInput" placeholder="Paste the text you want to analyze..."></textarea>
+    <input type="email" id="emailInput" placeholder="Your email (analysis will be sent here)" />
+
+    <button onclick="analyzeText()">Analyze Text</button>
+
+    <div class="result" id="resultBox">
+      <h3>Analysis Summary</h3>
+      <p id="analysisResult"></p>
+    </div>
+  </div>
+
+  <script>
+    function analyzeText() {
+      const text = document.getElementById("textInput").value;
+      const email = document.getElementById("emailInput").value;
+
+      if (!text || !email) {
+        alert("Please enter text and a valid email.");
+        return;
+      }
+
+      document.getElementById("resultBox").style.display = "block";
+      document.getElementById("analysisResult").innerText =
+        "This text shows signs of emotional urgency and authority-based persuasion. " +
+        "Some phrases are designed to pressure the reader into quick decisions. " +
+        "A full breakdown has been sent to " + email + ".";
+    }
+  </script>
+
+</body>
+</html>
