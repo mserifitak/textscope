@@ -81,24 +81,63 @@
     </div>
   </div>
 
-  <script>
-    function analyzeTone() {
-      const text = document.getElementById("textInput").value;
-      const email = document.getElementById("emailInput").value;
+<script>
+async function analyzeTone() {
+  const text = document.getElementById("textInput").value;
+  const email = document.getElementById("emailInput").value;
 
-      if (!text || !email) {
-        alert("Please enter text and a valid email.");
-        return;
-      }
+  if (!text || !email) {
+    alert("Please enter text and a valid email.");
+    return;
+  }
 
-      document.getElementById("resultBox").style.display = "block";
-      document.getElementById("toneScore").innerText = "Professional Score: 78/100";
-      document.getElementById("analysisResult").innerText =
-        "The tone is generally professional and clear. " +
-        "Some sentences could be more concise and confident. " +
-        "A detailed breakdown has been sent to " + email + ".";
-    }
-  </script>
+  document.getElementById("resultBox").style.display = "block";
+  document.getElementById("toneScore").innerText = "Analyzing...";
+  document.getElementById("analysisResult").innerText = "";
+
+  const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      "Authorization": "Bearer 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",
+      "Content-Type": "application/json",
+      "HTTP-Referer": "https://textscope.co",
+      "X-Title": "Textscope"
+    },
+    body: JSON.stringify({
+      model: "openai/gpt-4o-mini",
+      messages: [
+        {
+          role: "system",
+          content: "You are an expert business communication analyst. You evaluate professionalism, clarity, tone, confidence, politeness, and suitability for workplace communication."
+        },
+        {
+          role: "user",
+          content:
+            "Analyze the following text for professional tone.\n" +
+            "1) Give a professionalism score from 0 to 100.\n" +
+            "2) Briefly explain the tone.\n" +
+            "3) Suggest one improvement.\n\n" +
+            "Text:\n" + text
+        }
+      ]
+    })
+  });
+
+  const data = await response.json();
+  const result = data.choices[0].message.content;
+
+  // Basit skor çekme (ilk sayıyı yakalamaya çalışır)
+  const scoreMatch = result.match(/(\d{1,3})/);
+  const score = scoreMatch ? scoreMatch[1] : "—";
+
+  document.getElementById("toneScore").innerText =
+    "Professional Score: " + score + "/100";
+
+  document.getElementById("analysisResult").innerText =
+    result + "\n\n(Full analysis will be sent to " + email + ")";
+}
+</script>
+
 
 </body>
 </html>
