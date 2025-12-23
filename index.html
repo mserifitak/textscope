@@ -1,207 +1,112 @@
-<!DOCTYPE htmlU P A>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Textscope – Detect Manipulation & Professional Tone in Text</title>
-  <meta name="description" content="Analyze text for manipulation, emotional pressure, and professional tone using AI-powered insights. Built for writers, marketers, and professionals.">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-
+  <meta name="description" content="Analyze text for manipulation, hidden intent, and professional tone using AI." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
-    :root {
-      --bg: #0e0f13;
-      --card: #161821;
-      --text: #e8e9ed;
-      --muted: #a0a3ad;
-      --accent: #6ae3ff;
-      --accent-2: #8b5cf6;
-    }
-
-    * {
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
-    }
-
     body {
       margin: 0;
-      background: linear-gradient(180deg, #0e0f13, #0b0c10);
-      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0e0e11;
+      color: #ffffff;
     }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
     .container {
-      max-width: 1100px;
+      max-width: 960px;
       margin: auto;
-      padding: 80px 24px;
+      padding: 80px 20px;
     }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 120px;
+    h1 {
+      font-size: 42px;
+      margin-bottom: 20px;
     }
-
-    .logo {
-      font-weight: 700;
-      font-size: 22px;
-      letter-spacing: 0.5px;
-    }
-
-    nav a {
-      margin-left: 32px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .hero {
-      text-align: center;
-      margin-bottom: 120px;
-    }
-
-    .hero h1 {
-      font-size: 48px;
-      line-height: 1.15;
-      margin-bottom: 24px;
-    }
-
-    .hero p {
+    p {
       font-size: 18px;
-      color: var(--muted);
-      max-width: 720px;
-      margin: 0 auto 48px;
+      color: #cccccc;
+      line-height: 1.6;
     }
-
-    .cta-buttons {
+    .cta {
+      margin-top: 40px;
       display: flex;
-      justify-content: center;
       gap: 20px;
       flex-wrap: wrap;
     }
-
     .btn {
       padding: 16px 28px;
-      border-radius: 10px;
-      font-weight: 600;
-      font-size: 15px;
-      transition: all 0.25s ease;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      background: #ffffff;
       color: #000;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 6px;
     }
-
-    .btn-primary:hover {
-      opacity: 0.85;
+    .btn.secondary {
+      background: transparent;
+      border: 1px solid #ffffff;
+      color: #ffffff;
     }
-
-    .btn-secondary {
-      background: var(--card);
-      border: 1px solid #2a2d3a;
-      color: var(--text);
-    }
-
-    .btn-secondary:hover {
-      border-color: var(--accent);
-    }
-
     .features {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 32px;
+      gap: 30px;
+      margin-top: 80px;
     }
-
     .card {
-      background: var(--card);
-      border: 1px solid #1f2230;
-      border-radius: 16px;
-      padding: 32px;
+      background: #16161d;
+      padding: 30px;
+      border-radius: 10px;
     }
-
-    .card h3 {
-      margin-top: 0;
-      margin-bottom: 12px;
-      font-size: 20px;
-    }
-
-    .card p {
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.6;
-    }
-
     footer {
-      text-align: center;
-      padding: 40px 24px;
-      color: var(--muted);
-      font-size: 13px;
-      border-top: 1px solid #1f2230;
+      margin-top: 100px;
+      font-size: 14px;
+      color: #777;
     }
   </style>
 </head>
 <body>
 
   <div class="container">
+    <h1>Understand What Your Text Is Really Saying</h1>
+    <p>
+      Textscope uses AI to analyze written content for manipulation,
+      hidden intent, and professional tone — before you send or publish it.
+    </p>
 
-    <header>
-      <div class="logo">Textscope</div>
-      <nav>
-        <a href="/manipulation">Manipulation</a>
-        <a href="/professional-tone">Professional Tone</a>
-      </nav>
-    </header>
+    <div class="cta">
+      <a href="/manipulation/" class="btn">Analyze Manipulation</a>
+      <a href="/professional-tone/" class="btn secondary">Check Professional Tone</a>
+    </div>
 
-    <section class="hero">
-      <h1>Understand the Hidden Intent Behind Words</h1>
-      <p>
-        Textscope analyzes written content to detect manipulation, emotional pressure,
-        and professional tone — helping you write clearer, fairer, and more effective communication.
-      </p>
-
-      <div class="cta-buttons">
-        <a href="/manipulation" class="btn btn-primary">Analyze Manipulation</a>
-        <a href="/professional-tone" class="btn btn-secondary">Check Professional Tone</a>
-      </div>
-    </section>
-
-    <section class="features">
+    <div class="features">
       <div class="card">
         <h3>Manipulation Detection</h3>
         <p>
-          Identify emotional triggers, urgency tactics, guilt language,
-          and psychological pressure hidden inside text.
+          Identify emotional pressure, urgency tricks, authority bias,
+          and subtle persuasion techniques in any text.
         </p>
       </div>
 
       <div class="card">
         <h3>Professional Tone Analysis</h3>
         <p>
-          Evaluate clarity, formality, confidence, and suitability
-          for business, clients, or official communication.
+          See whether your email or message sounds professional,
+          confident, aggressive, or unclear — instantly.
         </p>
       </div>
 
       <div class="card">
-        <h3>Built for Professionals</h3>
+        <h3>Email-Based Results</h3>
         <p>
-          Designed for marketers, writers, HR teams, founders,
-          and anyone who cares about ethical and effective communication.
+          Paste your text, submit once, and receive a clear AI analysis
+          directly to your email.
         </p>
       </div>
-    </section>
+    </div>
 
+    <footer>
+      © 2025 Textscope · AI-powered text analysis
+    </footer>
   </div>
-
-  <footer>
-    © 2025 Textscope · Ethical AI Text Analysis
-  </footer>
 
 </body>
 </html>
