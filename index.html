@@ -1,71 +1,207 @@
-
-<!DOCTYPE html>
+<!DOCTYPE htmlU P A>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Textscope – AI Text Analysis & Content Tools</title>
+  <meta charset="UTF-8">
+  <title>Textscope – Detect Manipulation & Professional Tone in Text</title>
+  <meta name="description" content="Analyze text for manipulation, emotional pressure, and professional tone using AI-powered insights. Built for writers, marketers, and professionals.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="description" content="Textscope helps you analyze, optimize, and understand text with AI-powered tools. Fast, simple, and effective.">
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root {
+      --bg: #0e0f13;
+      --card: #161821;
+      --text: #e8e9ed;
+      --muted: #a0a3ad;
+      --accent: #6ae3ff;
+      --accent-2: #8b5cf6;
+    }
 
-<link rel="canonical" href="https://textscope.co/">
+    * {
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
 
-<style>
-body {
-  font-family: Arial, sans-serif;
-  background: #f4f6f8;
-  margin: 0;
-  color: #111;
-}
-.container {
-  max-width: 900px;
-  margin: auto;
-  padding: 80px 20px;
-  text-align: center;
-}
-.cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 25px;
-  margin-top: 50px;
-}
-.card {
-  background: white;
-  padding: 30px;
-  border-radius: 14px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.07);
-}
-.card a {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 14px 22px;
-  background: #111;
-  color: white;
-  text-decoration: none;
-  border-radius: 8px;
-}
-</style>
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, #0e0f13, #0b0c10);
+      color: var(--text);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 80px 24px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 120px;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 22px;
+      letter-spacing: 0.5px;
+    }
+
+    nav a {
+      margin-left: 32px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 120px;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      line-height: 1.15;
+      margin-bottom: 24px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 720px;
+      margin: 0 auto 48px;
+    }
+
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 16px 28px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 15px;
+      transition: all 0.25s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #000;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.85;
+    }
+
+    .btn-secondary {
+      background: var(--card);
+      border: 1px solid #2a2d3a;
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid #1f2230;
+      border-radius: 16px;
+      padding: 32px;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      font-size: 20px;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      color: var(--muted);
+      font-size: 13px;
+      border-top: 1px solid #1f2230;
+    }
+  </style>
 </head>
-
 <body>
-<div class="container">
-  <h1>Textscope</h1>
-  <p>See what messages really mean.</p>
 
-  <div class="cards">
-    <div class="card">
-      <h2>Manipulation Check</h2>
-      <p>Detect hidden pressure or emotional tactics.</p>
-      <a href="manipulation.html">Start Analysis</a>
-    </div>
+  <div class="container">
 
-    <div class="card">
-      <h2>Professional Tone Check</h2>
-      <p>Check if your message sounds professional.</p>
-      <a href="professional.html">Check Message</a>
-    </div>
+    <header>
+      <div class="logo">Textscope</div>
+      <nav>
+        <a href="/manipulation">Manipulation</a>
+        <a href="/professional-tone">Professional Tone</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <h1>Understand the Hidden Intent Behind Words</h1>
+      <p>
+        Textscope analyzes written content to detect manipulation, emotional pressure,
+        and professional tone — helping you write clearer, fairer, and more effective communication.
+      </p>
+
+      <div class="cta-buttons">
+        <a href="/manipulation" class="btn btn-primary">Analyze Manipulation</a>
+        <a href="/professional-tone" class="btn btn-secondary">Check Professional Tone</a>
+      </div>
+    </section>
+
+    <section class="features">
+      <div class="card">
+        <h3>Manipulation Detection</h3>
+        <p>
+          Identify emotional triggers, urgency tactics, guilt language,
+          and psychological pressure hidden inside text.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Professional Tone Analysis</h3>
+        <p>
+          Evaluate clarity, formality, confidence, and suitability
+          for business, clients, or official communication.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Built for Professionals</h3>
+        <p>
+          Designed for marketers, writers, HR teams, founders,
+          and anyone who cares about ethical and effective communication.
+        </p>
+      </div>
+    </section>
+
   </div>
-</div>
+
+  <footer>
+    © 2025 Textscope · Ethical AI Text Analysis
+  </footer>
+
 </body>
 </html>
