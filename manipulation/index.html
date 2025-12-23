@@ -77,23 +77,50 @@
     </div>
   </div>
 
-  <script>
-    function analyzeText() {
-      const text = document.getElementById("textInput").value;
-      const email = document.getElementById("emailInput").value;
+<script>
+async function analyzeText() {
+  const text = document.getElementById("textInput").value;
+  const email = document.getElementById("emailInput").value;
 
-      if (!text || !email) {
-        alert("Please enter text and a valid email.");
-        return;
-      }
+  if (!text || !email) {
+    alert("Please enter text and a valid email.");
+    return;
+  }
 
-      document.getElementById("resultBox").style.display = "block";
-      document.getElementById("analysisResult").innerText =
-        "This text shows signs of emotional urgency and authority-based persuasion. " +
-        "Some phrases are designed to pressure the reader into quick decisions. " +
-        "A full breakdown has been sent to " + email + ".";
-    }
-  </script>
+  document.getElementById("resultBox").style.display = "block";
+  document.getElementById("analysisResult").innerText = "Analyzing with AI...";
+
+  const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      "Authorization": "Bearer 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",
+      "Content-Type": "application/json",
+      "HTTP-Referer": "https://textscope.co",
+      "X-Title": "Textscope"
+    },
+    body: JSON.stringify({
+      model: "openai/gpt-4o-mini",
+      messages: [
+        {
+          role: "system",
+          content: "You are an expert in detecting emotional manipulation, persuasion tactics, urgency, fear, authority bias, and hidden intent in text."
+        },
+        {
+          role: "user",
+          content: "Analyze the following text for manipulation techniques. Be clear, structured, and concise:\n\n" + text
+        }
+      ]
+    })
+  });
+
+  const data = await response.json();
+  const result = data.choices[0].message.content;
+
+  document.getElementById("analysisResult").innerText =
+    result + "\n\n(Analysis will be sent to " + email + ")";
+}
+</script>
+
 
 </body>
 </html>
