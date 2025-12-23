@@ -1,1 +1,65 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Textscope</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+  margin: 0;
+  color: #111;
+}
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 80px 20px;
+  text-align: center;
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+  margin-top: 50px;
+}
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.07);
+}
+.card a {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 14px 22px;
+  background: #111;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+  <h1>Textscope</h1>
+  <p>See what messages really mean.</p>
+
+  <div class="cards">
+    <div class="card">
+      <h2>Manipulation Check</h2>
+      <p>Detect hidden pressure or emotional tactics.</p>
+      <a href="manipulation.html">Start Analysis</a>
+    </div>
+
+    <div class="card">
+      <h2>Professional Tone Check</h2>
+      <p>Check if your message sounds professional.</p>
+      <a href="professional.html">Check Message</a>
+    </div>
+  </div>
+</div>
+</body>
+</html>
