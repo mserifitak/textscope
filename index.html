@@ -1,39 +1,22 @@
-<!DOCTYPE htmlU P A>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Textscope – Detect Manipulation & Professional Tone in Text</title>
-  <meta name="description" content="Analyze text for manipulation, emotional pressure, and professional tone using AI-powered insights. Built for writers, marketers, and professionals.">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>Textscope — Before you send it, know the risk</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Check if your message could cause trouble or hurt your career — before you hit send." />
 
-  <!-- Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    :root {
-      --bg: #0e0f13;
-      --card: #161821;
-      --text: #e8e9ed;
-      --muted: #a0a3ad;
-      --accent: #6ae3ff;
-      --accent-2: #8b5cf6;
-    }
-
-    * {
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      margin: 0;
-      background: linear-gradient(180deg, #0e0f13, #0b0c10);
-      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      background: #0b0d12;
+      color: #e5e7eb;
+      line-height: 1.6;
     }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    a { color: inherit; text-decoration: none; }
 
     .container {
       max-width: 1100px;
@@ -45,163 +28,196 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 120px;
+      margin-bottom: 80px;
     }
 
     .logo {
+      font-size: 1.2rem;
       font-weight: 700;
-      font-size: 22px;
       letter-spacing: 0.5px;
     }
 
-    nav a {
-      margin-left: 32px;
-      color: var(--muted);
-      font-size: 14px;
+    .btn {
+      background: #6366f1;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-weight: 600;
+      transition: 0.2s;
     }
 
+    .btn:hover { background: #4f46e5; }
+
     .hero {
-      text-align: center;
+      max-width: 760px;
       margin-bottom: 120px;
     }
 
-    .hero h1 {
-      font-size: 48px;
-      line-height: 1.15;
+    h1 {
+      font-size: 3rem;
+      line-height: 1.1;
       margin-bottom: 24px;
+      font-weight: 700;
     }
 
     .hero p {
-      font-size: 18px;
-      color: var(--muted);
-      max-width: 720px;
-      margin: 0 auto 48px;
+      font-size: 1.1rem;
+      color: #c7cad1;
+      margin-bottom: 32px;
     }
 
-    .cta-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
+    .hero .btn {
+      display: inline-block;
+      font-size: 1rem;
     }
 
-    .btn {
-      padding: 16px 28px;
-      border-radius: 10px;
-      font-weight: 600;
-      font-size: 15px;
-      transition: all 0.25s ease;
+    section {
+      margin-bottom: 120px;
     }
 
-    .btn-primary {
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      color: #000;
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 24px;
     }
 
-    .btn-primary:hover {
-      opacity: 0.85;
+    ul {
+      list-style: none;
+      margin-top: 24px;
     }
 
-    .btn-secondary {
-      background: var(--card);
-      border: 1px solid #2a2d3a;
-      color: var(--text);
+    ul li {
+      margin-bottom: 12px;
+      color: #c7cad1;
     }
 
-    .btn-secondary:hover {
-      border-color: var(--accent);
-    }
-
-    .features {
+    .steps {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 32px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      margin-top: 32px;
     }
 
     .card {
-      background: var(--card);
-      border: 1px solid #1f2230;
+      background: #111827;
+      padding: 28px;
       border-radius: 16px;
+    }
+
+    .pricing {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 32px;
+      margin-top: 40px;
+    }
+
+    .price-card {
+      border: 1px solid #1f2937;
       padding: 32px;
+      border-radius: 16px;
     }
 
-    .card h3 {
-      margin-top: 0;
-      margin-bottom: 12px;
-      font-size: 20px;
-    }
-
-    .card p {
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.6;
+    .price {
+      font-size: 2.2rem;
+      margin: 16px 0;
+      font-weight: 700;
     }
 
     footer {
+      border-top: 1px solid #1f2937;
+      padding: 40px 0;
+      color: #9ca3af;
       text-align: center;
-      padding: 40px 24px;
-      color: var(--muted);
-      font-size: 13px;
-      border-top: 1px solid #1f2230;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2.2rem; }
     }
   </style>
 </head>
+
 <body>
 
   <div class="container">
 
     <header>
       <div class="logo">Textscope</div>
-      <nav>
-        <a href="/manipulation">Manipulation</a>
-        <a href="/professional-tone">Professional Tone</a>
-      </nav>
+      <a href="#check" class="btn">Check message</a>
     </header>
 
     <section class="hero">
-      <h1>Understand the Hidden Intent Behind Words</h1>
+      <h1>Before you send it,<br>know the risk.</h1>
       <p>
-        Textscope analyzes written content to detect manipulation, emotional pressure,
-        and professional tone — helping you write clearer, fairer, and more effective communication.
+        One last check to see if your message could cause trouble —
+        or hurt your career.
       </p>
+      <a href="#check" class="btn">Check my message</a>
+      <p style="margin-top:12px;font-size:0.85rem;color:#9ca3af">
+        Used by professionals who don’t want regrets.
+      </p>
+    </section>
 
-      <div class="cta-buttons">
-        <a href="/manipulation" class="btn btn-primary">Analyze Manipulation</a>
-        <a href="/professional-tone" class="btn btn-secondary">Check Professional Tone</a>
+    <section>
+      <h2>Why Textscope?</h2>
+      <ul>
+        <li>• Messages can be misunderstood</li>
+        <li>• Tone is hard to judge alone</li>
+        <li>• One wrong message can damage trust</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>How it works</h2>
+      <div class="steps">
+        <div class="card">1. Paste your message</div>
+        <div class="card">2. Click “Check message”</div>
+        <div class="card">3. Get a clear risk verdict</div>
       </div>
     </section>
 
-    <section class="features">
-      <div class="card">
-        <h3>Manipulation Detection</h3>
-        <p>
-          Identify emotional triggers, urgency tactics, guilt language,
-          and psychological pressure hidden inside text.
-        </p>
-      </div>
+    <section>
+      <h2>What we analyze</h2>
+      <ul>
+        <li>• Unprofessional or emotional tone</li>
+        <li>• Power imbalance and hidden pressure</li>
+        <li>• Manipulative or risky wording</li>
+        <li>• Reputation & HR red flags</li>
+      </ul>
+    </section>
 
-      <div class="card">
-        <h3>Professional Tone Analysis</h3>
-        <p>
-          Evaluate clarity, formality, confidence, and suitability
-          for business, clients, or official communication.
-        </p>
-      </div>
-
-      <div class="card">
-        <h3>Built for Professionals</h3>
-        <p>
-          Designed for marketers, writers, HR teams, founders,
-          and anyone who cares about ethical and effective communication.
-        </p>
+    <section>
+      <h2>Pricing</h2>
+      <div class="pricing">
+        <div class="price-card">
+          <h3>Free</h3>
+          <p class="price">$0</p>
+          <ul>
+            <li>• Limited daily checks</li>
+            <li>• Risk verdict only</li>
+          </ul>
+        </div>
+        <div class="price-card">
+          <h3>Pro</h3>
+          <p class="price">$9</p>
+          <ul>
+            <li>• Unlimited checks</li>
+            <li>• Clear explanations</li>
+            <li>• Rewrite suggestions</li>
+            <li>• Email report</li>
+          </ul>
+        </div>
       </div>
     </section>
+
+    <section class="hero" id="check">
+      <h2>One check. Zero regrets.</h2>
+      <a href="#" class="btn">Start checking messages</a>
+    </section>
+
+    <footer>
+      © 2025 Textscope · Think before you send
+    </footer>
 
   </div>
-
-  <footer>
-    © 2025 Textscope · Ethical AI Text Analysis
-  </footer>
 
 </body>
 </html>
