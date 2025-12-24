@@ -2,135 +2,181 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Textscope — Before you send it, know the risk</title>
+  <title>Textscope — One check before you send</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Check if your message could cause trouble or hurt your career — before you hit send." />
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
+    :root {
+      --bg: #0a0b0f;
+      --panel: #11131a;
+      --border: #1f2330;
+      --text: #e6e8ee;
+      --muted: #a1a6b3;
+      --accent: #6d7cff;
+      --accent-soft: rgba(109,124,255,0.15);
+    }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: 'Inter', sans-serif;
-      background: #0b0d12;
-      color: #e5e7eb;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(1200px 600px at 70% -20%, #1a1f3b, transparent),
+                  var(--bg);
+      color: var(--text);
       line-height: 1.6;
     }
+
     a { color: inherit; text-decoration: none; }
 
     .container {
-      max-width: 1100px;
+      max-width: 1120px;
       margin: auto;
-      padding: 80px 24px;
+      padding: 72px 24px;
     }
 
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 80px;
+      margin-bottom: 96px;
     }
 
     .logo {
-      font-size: 1.2rem;
       font-weight: 700;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.4px;
+      font-size: 1.1rem;
     }
 
-    .btn {
-      background: #6366f1;
+    .cta {
       padding: 12px 20px;
-      border-radius: 10px;
+      background: linear-gradient(135deg, #6d7cff, #8a94ff);
+      border-radius: 12px;
       font-weight: 600;
-      transition: 0.2s;
+      box-shadow: 0 10px 30px rgba(109,124,255,0.25);
     }
-
-    .btn:hover { background: #4f46e5; }
 
     .hero {
       max-width: 760px;
-      margin-bottom: 120px;
+      margin-bottom: 140px;
     }
 
     h1 {
-      font-size: 3rem;
-      line-height: 1.1;
-      margin-bottom: 24px;
-      font-weight: 700;
+      font-size: 3.4rem;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 28px;
     }
 
     .hero p {
-      font-size: 1.1rem;
-      color: #c7cad1;
-      margin-bottom: 32px;
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 620px;
+      margin-bottom: 40px;
     }
 
-    .hero .btn {
-      display: inline-block;
-      font-size: 1rem;
+    .subtle {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 14px;
     }
 
     section {
-      margin-bottom: 120px;
+      margin-bottom: 140px;
     }
 
     h2 {
-      font-size: 2rem;
+      font-size: 2.2rem;
+      letter-spacing: -0.01em;
       margin-bottom: 24px;
     }
 
-    ul {
-      list-style: none;
-      margin-top: 24px;
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 28px;
+      margin-top: 40px;
     }
 
-    ul li {
-      margin-bottom: 12px;
-      color: #c7cad1;
+    .card {
+      background: linear-gradient(180deg, #131625, #0f1220);
+      border: 1px solid var(--border);
+      padding: 32px;
+      border-radius: 20px;
     }
 
-    .steps {
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 1.05rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .flow {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 24px;
       margin-top: 32px;
     }
 
-    .card {
-      background: #111827;
+    .step {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 18px;
       padding: 28px;
-      border-radius: 16px;
+      font-weight: 500;
     }
 
     .pricing {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 32px;
-      margin-top: 40px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 36px;
+      margin-top: 48px;
     }
 
     .price-card {
-      border: 1px solid #1f2937;
-      padding: 32px;
-      border-radius: 16px;
+      background: linear-gradient(180deg, #14172b, #0f1220);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 36px;
     }
 
     .price {
-      font-size: 2.2rem;
-      margin: 16px 0;
+      font-size: 2.4rem;
       font-weight: 700;
+      margin: 20px 0;
+    }
+
+    .price-card ul {
+      list-style: none;
+      margin-top: 24px;
+    }
+
+    .price-card li {
+      margin-bottom: 10px;
+      color: var(--muted);
+    }
+
+    .highlight {
+      border: 1px solid var(--accent);
+      box-shadow: 0 0 0 1px var(--accent-soft);
     }
 
     footer {
-      border-top: 1px solid #1f2937;
-      padding: 40px 0;
-      color: #9ca3af;
+      border-top: 1px solid var(--border);
+      padding: 48px 0;
       text-align: center;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
+      color: var(--muted);
     }
 
-    @media (max-width: 600px) {
-      h1 { font-size: 2.2rem; }
+    @media (max-width: 640px) {
+      h1 { font-size: 2.4rem; }
+      h2 { font-size: 1.8rem; }
     }
   </style>
 </head>
@@ -141,47 +187,44 @@
 
     <header>
       <div class="logo">Textscope</div>
-      <a href="#check" class="btn">Check message</a>
+      <a href="#check" class="cta">Check message</a>
     </header>
 
     <section class="hero">
-      <h1>Before you send it,<br>know the risk.</h1>
+      <h1>One check<br>before you send.</h1>
       <p>
-        One last check to see if your message could cause trouble —
-        or hurt your career.
+        Textscope helps you understand whether a message could cause trouble,
+        be misunderstood, or quietly damage your professional reputation.
       </p>
-      <a href="#check" class="btn">Check my message</a>
-      <p style="margin-top:12px;font-size:0.85rem;color:#9ca3af">
-        Used by professionals who don’t want regrets.
-      </p>
+      <a href="#check" class="cta">Check my message</a>
+      <div class="subtle">Trusted by professionals who don’t guess.</div>
     </section>
 
     <section>
-      <h2>Why Textscope?</h2>
-      <ul>
-        <li>• Messages can be misunderstood</li>
-        <li>• Tone is hard to judge alone</li>
-        <li>• One wrong message can damage trust</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>How it works</h2>
-      <div class="steps">
-        <div class="card">1. Paste your message</div>
-        <div class="card">2. Click “Check message”</div>
-        <div class="card">3. Get a clear risk verdict</div>
+      <h2>Why professionals use Textscope</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Hidden risk detection</h3>
+          <p>Spot tone, intent, and pressure signals you might miss.</p>
+        </div>
+        <div class="card">
+          <h3>Career-safe decisions</h3>
+          <p>Know if a message could harm trust, authority, or reputation.</p>
+        </div>
+        <div class="card">
+          <h3>Clarity, not noise</h3>
+          <p>No scores or jargon — just a clear verdict.</p>
+        </div>
       </div>
     </section>
 
     <section>
-      <h2>What we analyze</h2>
-      <ul>
-        <li>• Unprofessional or emotional tone</li>
-        <li>• Power imbalance and hidden pressure</li>
-        <li>• Manipulative or risky wording</li>
-        <li>• Reputation & HR red flags</li>
-      </ul>
+      <h2>How it works</h2>
+      <div class="flow">
+        <div class="step">Paste your message</div>
+        <div class="step">Run a quick check</div>
+        <div class="step">Send with confidence</div>
+      </div>
     </section>
 
     <section>
@@ -189,32 +232,32 @@
       <div class="pricing">
         <div class="price-card">
           <h3>Free</h3>
-          <p class="price">$0</p>
+          <div class="price">$0</div>
           <ul>
-            <li>• Limited daily checks</li>
-            <li>• Risk verdict only</li>
+            <li>Limited checks</li>
+            <li>Risk verdict</li>
           </ul>
         </div>
-        <div class="price-card">
+        <div class="price-card highlight">
           <h3>Pro</h3>
-          <p class="price">$9</p>
+          <div class="price">$9</div>
           <ul>
-            <li>• Unlimited checks</li>
-            <li>• Clear explanations</li>
-            <li>• Rewrite suggestions</li>
-            <li>• Email report</li>
+            <li>Unlimited checks</li>
+            <li>Clear explanations</li>
+            <li>Rewrite suggestions</li>
+            <li>Email reports</li>
           </ul>
         </div>
       </div>
     </section>
 
     <section class="hero" id="check">
-      <h2>One check. Zero regrets.</h2>
-      <a href="#" class="btn">Start checking messages</a>
+      <h2>Think once. Send right.</h2>
+      <a href="#" class="cta">Start checking messages</a>
     </section>
 
     <footer>
-      © 2025 Textscope · Think before you send
+      © 2025 Textscope · One check before you send
     </footer>
 
   </div>
