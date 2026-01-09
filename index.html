@@ -343,11 +343,11 @@
       }
     }
 
-    async function upgradeText() {
+async function upgradeText() {
   const input = document.getElementById('inputText').value.trim();
   const tone = document.getElementById('toneSelect').value;
   if (!input) {
-    alert('Please enter a message.');
+    alert('Please enter a message...');
     return;
   }
 
@@ -355,51 +355,26 @@
 
   const resultBox = document.getElementById('resultBox');
   const resultText = document.getElementById('resultText');
-  resultText.innerText = '✨ Refining your words…';
+  resultText.innerText = '✨ Refining…';
   resultBox.style.display = 'block';
 
-  async function tryRefine(maxRetries = 2) {
-    for (let attempt = 1; attempt <= maxRetries; attempt++) {
-      try {
-        const webhookUrl = "https://eos716cpgzleskg.m.pipedream.net"; // ← KENDİ PIPEDREAM URL'Nİ YAZ
-        const res = await fetch(webhookUrl, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ text: input, tone: tone })
-        });
+  try {
+    const webhookUrl = "https://eos716cpgzleskg.m.pipedream.net"; // ← KENDİ URL'Nİ YAZ
+    const res = await fetch(webhookUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ text: input, tone: tone })
+    });
 
-        const data = await res.json();
-        const text = data.improvedText || "";
-
-        // Hugging Face geçici hata mı?
-        if (
-          text.includes("loading") ||
-          text.includes("busy") ||
-          text.includes("wait") ||
-          text.includes("overloaded")
-        ) {
-          if (attempt < maxRetries) {
-            resultText.innerText = `⏳ Loading AI (${attempt}/${maxRetries})…`;
-            await new Promise(r => setTimeout(r, 6000)); // 6 sn bekle
-            continue;
-          }
-        }
-
-        return text;
-      } catch (err) {
-        console.error("Network error:", err);
-        if (attempt === maxRetries) {
-          return "Couldn’t connect. Please check your internet.";
-        }
-        await new Promise(r => setTimeout(r, 4000));
-      }
-    }
+    const data = await res.json();
+    resultText.innerText = data.improvedText || "Couldn’t refine this text. Try again.";
+    window.lastImprovedText = data.improvedText;
+  } catch (err) {
+    resultText.innerText = "Connection failed. Please try again.";
+    console.error(err);
   }
-
-  const improved = await tryRefine();
-  resultText.innerText = improved;
-  window.lastImprovedText = improved;
 }
+    
   </script>
 </body>
 </html>
