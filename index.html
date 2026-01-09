@@ -14,7 +14,7 @@
   <meta property="og:description" content="Refine your message in one click. Choose your tone: professional, empathetic, confident, or clear. Private. Free. No login." />
   <meta property="og:url" content="https://textscope.co" />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://textscope.co/og.png" /> <!-- İstersen sonra ekleyebilirsin -->
+  <meta property="og:image" content="https://textscope.co/og.png" /> 
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
@@ -272,7 +272,6 @@
       <p class="subtitle">Refine your message with AI. Choose your tone. Send with confidence.</p>
     </header>
 
-    <!-- YENİ: HAKKIMIZDA BÖLÜMÜ -->
     <section class="about">
       <h2>We help you say what you mean — beautifully</h2>
       <p>
@@ -345,22 +344,24 @@
     }
 
     async function upgradeText() {
-      const input = document.getElementById('inputText').value.trim();
-      const tone = document.getElementById('toneSelect').value;
-      if (!input) {
-        alert('Please enter a message.');
-        return;
-      }
+  const input = document.getElementById('inputText').value.trim();
+  const tone = document.getElementById('toneSelect').value;
+  if (!input) {
+    alert('Please enter a message.');
+    return;
+  }
 
-      trackEvent('refine_text', tone);
+  trackEvent('refine_text', tone);
 
-      const resultBox = document.getElementById('resultBox');
-      const resultText = document.getElementById('resultText');
-      resultText.innerText = 'Refining your words…';
-      resultBox.style.display = 'block';
+  const resultBox = document.getElementById('resultBox');
+  const resultText = document.getElementById('resultText');
+  resultText.innerText = '✨ Refining your words…';
+  resultBox.style.display = 'block';
 
+  async function tryRefine(maxRetries = 2) {
+    for (let attempt = 1; attempt <= maxRetries; attempt++) {
       try {
-        const webhookUrl = "https://eos716cpgzleskg.m.pipedream.net"; // ← KENDİ URL’Nİ YAZ
+        const webhookUrl = "https://eoi_xxxxx.pipedream.net"; // ← KENDİ PIPEDREAM URL'Nİ YAZ
         const res = await fetch(webhookUrl, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -368,22 +369,37 @@
         });
 
         const data = await res.json();
-        const improved = data.improvedText || "Couldn’t refine this text. Try again.";
-        resultText.innerText = improved;
-        window.lastImprovedText = improved;
+        const text = data.improvedText || "";
+
+        // Hugging Face geçici hata mı?
+        if (
+          text.includes("loading") ||
+          text.includes("busy") ||
+          text.includes("wait") ||
+          text.includes("overloaded")
+        ) {
+          if (attempt < maxRetries) {
+            resultText.innerText = `⏳ Loading AI (${attempt}/${maxRetries})…`;
+            await new Promise(r => setTimeout(r, 6000)); // 6 sn bekle
+            continue;
+          }
+        }
+
+        return text;
       } catch (err) {
-        resultText.innerText = "Hmm… something went wrong. Please retry.";
-        console.error(err);
+        console.error("Network error:", err);
+        if (attempt === maxRetries) {
+          return "Couldn’t connect. Please check your internet.";
+        }
+        await new Promise(r => setTimeout(r, 4000));
       }
     }
+  }
 
-    function shareResult() {
-      const text = window.lastImprovedText || "Refined my message with TextScope — try it!";
-      const url = "https://textscope.co";
-      const tweet = encodeURIComponent(`"${text}"\n\nRefined with @TextScopeAI\n${url}`);
-      window.open(`https://twitter.com/intent/tweet?text=${tweet}`, '_blank');
-      trackEvent('share_result', 'twitter');
-    }
+  const improved = await tryRefine();
+  resultText.innerText = improved;
+  window.lastImprovedText = improved;
+}
   </script>
 </body>
 </html>
