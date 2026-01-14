@@ -327,7 +327,7 @@ btn.onclick = async () => {
   btn.innerText = "Refining...";
   output.style.display = "none";
 
-  const res = await fetch("https://n8n-1ja9.onrender.com/webhook/textscope/", {
+  const res = await fetch("https://n8n-1ja9.onrender.com/webhook/textscope-refine", {
     method:"POST",
     headers:{ "Content-Type":"application/json" },
     body:JSON.stringify({
