@@ -316,33 +316,26 @@ footer{
 </footer>
 
 <script>
-const btn = document.getElementById("refineBtn");
-const output = document.getElementById("output");
+async function submitText() {
+  const text = document.getElementById("text").value;
+  const tone = document.getElementById("tone").value;
+  const resultBox = document.getElementById("result");
 
-btn.onclick = async () => {
-  const text = inputText.value.trim();
-  if(!text) return;
+  resultBox.innerText = "Processing...";
 
-  btn.disabled = true;
-  btn.innerText = "Refining...";
-  output.style.display = "none";
+  try {
+    const res = await fetch("https://textscope.mehmetserifitak.workers.dev/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ text, tone })
+    });
 
-  const res = await fetch("https://textscope.mehmetserifitak.workers.dev", {
-    method:"POST",
-    headers:{ "Content-Type":"application/json" },
-    body:JSON.stringify({
-      text,
-      tone: tone.value
-    })
-  });
-
-  const data = await res.json();
-  output.innerText = data.result || "No response.";
-  output.style.display = "block";
-
-  btn.disabled = false;
-  btn.innerText = "Refine Text";
-};
+    const data = await res.json();
+    resultBox.innerText = data.output || "No response";
+  } catch (err) {
+    resultBox.innerText = "Error connecting to API.";
+  }
+}
 </script>
 
 </body>
