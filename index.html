@@ -12,257 +12,121 @@
   <meta property="og:description" content="Paste your text, choose a tone, and get a refined version instantly. Free & private." />
   <meta property="og:type" content="website" />
 
-  <style>
-    :root {
-      --bg: #0a0d1a;
-      --card: #12162b;
-      --muted: #9aa3c7;
-      --text: #ffffff;
-      --neon: #00f0ff;
-      --purple: #7c5cff;
-      --border: rgba(255,255,255,0.08);
-    }
-
-    * { box-sizing: border-box; }
-
+   <style>
     body {
       margin: 0;
-      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background:
-        radial-gradient(600px circle at top center, rgba(0,240,255,0.12), transparent 60%),
-        radial-gradient(800px circle at bottom right, rgba(124,92,255,0.12), transparent 60%),
-        var(--bg);
-      color: var(--text);
-      line-height: 1.6;
+      font-family: Inter, system-ui, sans-serif;
+      background: #0b0f1a;
+      color: #fff;
     }
-
-    header {
-      padding: 96px 20px 64px;
-      text-align: center;
-    }
-
-    header h1 {
-      font-size: 52px;
-      margin-bottom: 16px;
-      background: linear-gradient(90deg, var(--neon), var(--purple));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    header p {
-      font-size: 20px;
-      color: var(--muted);
-      max-width: 680px;
-      margin: 0 auto;
-    }
-
     .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 20px 80px;
-    }
-
-    .tool {
-      background: linear-gradient(180deg, rgba(255,255,255,0.04), transparent);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 28px;
-      box-shadow: 0 0 60px rgba(0,240,255,0.12);
-    }
-
-    textarea, select, button {
-      width: 100%;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      padding: 14px;
-      font-size: 15px;
-      background: #0c1022;
-      color: var(--text);
-    }
-
-    textarea {
-      min-height: 160px;
-      resize: vertical;
-    }
-
-    select {
-      margin-top: 12px;
-    }
-
-    button {
-      margin-top: 16px;
-      background: linear-gradient(90deg, var(--neon), var(--purple));
-      color: #000;
-      font-weight: 700;
-      cursor: pointer;
-      border: none;
-      transition: transform .15s ease, opacity .15s ease;
-    }
-
-    button:hover {
-      transform: translateY(-1px);
-      opacity: .95;
-    }
-
-    #result {
-      margin-top: 20px;
-      padding: 18px;
-      border-radius: 14px;
-      background: #0c1022;
-      min-height: 90px;
-      white-space: pre-wrap;
-      transition: opacity .2s ease;
-    }
-
-    section {
-      margin-top: 72px;
-    }
-
-    section h2 {
-      font-size: 32px;
-      margin-bottom: 12px;
-    }
-
-    section p {
-      color: var(--muted);
-      max-width: 780px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 24px;
-      margin-top: 24px;
-    }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 18px;
+      max-width: 900px;
+      margin: 80px auto;
       padding: 24px;
     }
-
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 40px 20px;
-      text-align: center;
-      color: var(--muted);
-      font-size: 14px;
+    h1 {
+      font-size: 48px;
+      margin-bottom: 8px;
     }
-
-    a {
-      color: var(--neon);
-      text-decoration: none;
+    p {
+      color: #9aa4bf;
+    }
+    textarea {
+      width: 100%;
+      height: 160px;
+      background: #11162a;
+      border: 1px solid #1f2a44;
+      color: #fff;
+      padding: 16px;
+      font-size: 16px;
+      border-radius: 12px;
+    }
+    .tones {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 16px 0;
+    }
+    .tone {
+      padding: 8px 14px;
+      border-radius: 20px;
+      border: 1px solid #2a3cff;
+      cursor: pointer;
+      color: #9aa4ff;
+    }
+    .tone.active {
+      background: #2a3cff;
+      color: #fff;
+    }
+    button {
+      background: linear-gradient(90deg, #2a3cff, #00f2ff);
+      border: none;
+      padding: 14px 24px;
+      font-size: 16px;
+      border-radius: 12px;
+      cursor: pointer;
+      color: #000;
+      margin-top: 16px;
+    }
+    .output {
+      margin-top: 32px;
+      background: #11162a;
+      border-radius: 12px;
+      padding: 20px;
+      white-space: pre-wrap;
     }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>TextScope</h1>
-  <p>Refine your words before you send.  
-     Instantly rewrite messages, emails, and posts with the right tone.</p>
-</header>
-
 <div class="container">
+  <h1>TextScope</h1>
+  <p>Refine your words before you send.</p>
 
-  <!-- TOOL -->
-  <div class="tool">
-    <textarea id="text" placeholder="Paste your text here..."></textarea>
+  <textarea id="input" placeholder="Paste your text here..."></textarea>
 
-    <select id="tone">
-      <option value="professional">Professional</option>
-      <option value="friendly">Friendly</option>
-      <option value="confident">Confident</option>
-      <option value="empathetic">Empathetic</option>
-      <option value="clear">Clear & Concise</option>
-    </select>
-
-    <button id="btn" onclick="refine()">Refine Text</button>
-
-    <div id="result"></div>
+  <div class="tones">
+    <div class="tone active" data-tone="professional">Professional</div>
+    <div class="tone" data-tone="friendly">Friendly</div>
+    <div class="tone" data-tone="empathetic">Empathetic</div>
+    <div class="tone" data-tone="confident">Confident</div>
+    <div class="tone" data-tone="clear">Clear</div>
+    <div class="tone" data-tone="shorter">Shorter</div>
   </div>
 
-  <!-- VALUE -->
-  <section>
-    <h2>Why TextScope?</h2>
-    <div class="grid">
-      <div class="card">✦ Say the right thing, the right way</div>
-      <div class="card">✦ Fix tone before mistakes happen</div>
-      <div class="card">✦ No login, no tracking, no storage</div>
-    </div>
-  </section>
+  <button onclick="refine()">Refine Text</button>
 
-  <!-- HOW -->
-  <section>
-    <h2>How it works</h2>
-    <p>Paste your text, choose a tone, and get an instant refinement — powered by fast, open AI models.</p>
-  </section>
-
-  <!-- PRIVACY -->
-  <section>
-    <h2>Privacy first</h2>
-    <p>
-      Your text is never stored, logged, or analyzed beyond the moment it’s processed.
-      TextScope does not require accounts or collect personal data.
-    </p>
-  </section>
-
-  <!-- FAQ -->
-  <section>
-    <h2>FAQ</h2>
-    <p><strong>Is it really free?</strong><br>Yes. No accounts, no limits, no payment.</p>
-    <p><strong>Can you see my text?</strong><br>No. Everything is processed instantly and discarded.</p>
-  </section>
-
-  <!-- CONTACT -->
-  <section>
-    <h2>Contact</h2>
-    <p>
-      Feedback or ideas?  
-      <a href="mailto:hello@textscope.co">hello@textscope.co</a>
-    </p>
-  </section>
-
+  <div id="output" class="output"></div>
 </div>
-
-<footer>
-  © TextScope · Built for clarity, speed, and privacy.
-</footer>
 
 <script>
 const API_URL = "https://textscope.mehmetserifitak.workers.dev/";
+let selectedTone = "professional";
+
+document.querySelectorAll(".tone").forEach(t => {
+  t.onclick = () => {
+    document.querySelectorAll(".tone").forEach(x => x.classList.remove("active"));
+    t.classList.add("active");
+    selectedTone = t.dataset.tone;
+  };
+});
 
 async function refine() {
-  const text = document.getElementById("text").value.trim();
-  const tone = document.getElementById("tone").value;
-  const result = document.getElementById("result");
-  const btn = document.getElementById("btn");
+  const input = document.getElementById("input").value;
+  const output = document.getElementById("output");
+  output.textContent = "Refining...";
 
-  if (!text) {
-    result.innerText = "Please enter some text.";
-    return;
-  }
+  const res = await fetch(API_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      text: input,
+      tone: selectedTone
+    })
+  });
 
-  btn.disabled = true;
-  result.style.opacity = "0.6";
-  result.innerText = "Refining your text...";
-
-  try {
-    const res = await fetch(API_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ text, tone })
-    });
-
-    const data = await res.json();
-    result.innerText = data.output || "No output received.";
-  } catch (e) {
-    result.innerText = "API connection error.";
-  }
-
-  result.style.opacity = "1";
-  btn.disabled = false;
+  const data = await res.json();
+  output.textContent = data.output;
 }
 </script>
 
