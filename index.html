@@ -100,34 +100,46 @@
 </div>
 
 <script>
-const API_URL = "https://textscope.mehmetserifitak.workers.dev/";
-let selectedTone = "professional";
+async function refineText() {
+  const text = textarea.value.trim()
+  const tone = toneSelect.value
 
-document.querySelectorAll(".tone").forEach(t => {
-  t.onclick = () => {
-    document.querySelectorAll(".tone").forEach(x => x.classList.remove("active"));
-    t.classList.add("active");
-    selectedTone = t.dataset.tone;
-  };
-});
+  if (!text) {
+    showMessage("Please enter some text.", "warning")
+    return
+  }
 
-async function refine() {
-  const input = document.getElementById("input").value;
-  const output = document.getElementById("output");
-  output.textContent = "Refining...";
+  showMessage("Refining your text…", "loading")
 
-  const res = await fetch(API_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      text: input,
-      tone: selectedTone
+  try {
+    const res = await fetch("https://api.textscope.co/refine", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ text, tone })
     })
-  });
 
-  const data = await res.json();
-  output.textContent = data.output;
+    if (res.status === 429) {
+      showMessage(
+        "You’ve reached today’s free limit. Come back tomorrow or upgrade.",
+        "limit"
+      )
+      return
+    }
+
+    const data = await res.json()
+
+    if (data.output) {
+      outputBox.textContent = data.output
+      showMessage("Done. Review before sending.", "success")
+    } else {
+      showMessage("Something went wrong. Please try again.", "error")
+    }
+
+  } catch (e) {
+    showMessage("Connection error. Please try again.", "error")
+  }
 }
+
 </script>
 
 </body>
