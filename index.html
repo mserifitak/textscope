@@ -168,7 +168,6 @@
       max-width: 800px;
       line-height: 1.7;
     }
-
     footer {
       background: #05070d;
       border-top: 1px solid var(--border);
@@ -176,11 +175,17 @@
       margin-top: 80px;
     }
 
-    footer p {
-      color: var(--muted);
-      font-size: 14px;
-      text-align: center;
-    }
+ footer{
+  margin-top:140px;padding:60px 24px;
+  background:#02030a;border-top:1px solid rgba(255,255,255,.05);
+}
+.footer-inner{
+  max-width:1200px;margin:auto;
+  display:flex;justify-content:space-between;flex-wrap:wrap;
+}
+footer a{color:var(--muted);text-decoration:none}
+footer a:hover{color:var(--neon)}
+
   </style>
 </head>
 
@@ -244,18 +249,10 @@
     <div>
       <h4>TextScope</h4>
       <p>Premium AI text refinement platform.</p>
-    </div>
-    <div>
-      <h4>Product</h4>
-      <a href="#">Features</a><br>
-      <a href="#">Pricing</a>
-    </div>
-    <div>
-      <h4>Company</h4>
-      <a href="#">About</a><br>
+            <a href="#">About</a><br>
       <a href="#">Contact</a>
     </div>
-  </div>
+     </div>
 </footer>
 
 <!-- ================= SCRIPT ================= -->
